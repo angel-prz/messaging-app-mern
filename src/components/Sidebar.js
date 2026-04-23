@@ -11,7 +11,11 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar__header">
-        <Avatar />
+        <Avatar
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Instituto_Federal_Sul-rio-
+grandense_-_Marca_Vertical_2015.svg/1920px-Instituto_Federal_Sul-rio-grandense_-
+_Marca_Vertical_2015.svg.png"
+        />
         <div className="sidebar__headerRight">
           <IconButton>
             <DonutLargeIcon />
@@ -27,7 +31,7 @@ const Sidebar = () => {
       <div className="sidebar__search">
         <div className="sidebar__searchContainer">
           <SearchOutlinedIcon />
-          <input placeholder="Search"></input>
+          <input placeholder="Busque ou inicie um novo chat" type="text" />
         </div>
       </div>
       <div className="sidebar__chats"></div>
