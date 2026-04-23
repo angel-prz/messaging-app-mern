@@ -6,6 +6,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Avatar, IconButton } from "@mui/material";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import SidebarChat from "../SidebarChat/SidebarChat";
 
 const Sidebar = () => {
   return (
@@ -34,7 +35,11 @@ _Marca_Vertical_2015.svg.png"
           <input placeholder="Busque ou inicie um novo chat" type="text" />
         </div>
       </div>
-      <div className="sidebar__chats"></div>
+      <div className="sidebar__chats">
+        <SidebarChat />
+        <SidebarChat />
+        <SidebarChat />
+      </div>
     </div>
   );
 };
