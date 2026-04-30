@@ -12,12 +12,9 @@ function App() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      axios
-        .get("/messages/sync")
-        .then((res) => {
-          setMessages(res.data);
-        })
-        .catch((err) => console.error(err));
+      axios.get("/messages/sync").then((res) => {
+        setMessages(res.data);
+      });
     }, 1000);
 
     /* return () => clearTimeout(timer); */
