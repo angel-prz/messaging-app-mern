@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Avatar } from "@mui/material";
 import "./SidebarChat.css";
 
-const SidebarChat = ({ messages, person, lastTimestamp }) => {
+const SidebarChat = ({ person, lastTimestamp }) => {
   const [seed, setSeed] = useState("");
   useEffect(() => {
     setSeed(Math.floor(Math.random() * 5000));
@@ -13,8 +13,8 @@ const SidebarChat = ({ messages, person, lastTimestamp }) => {
         src={`https://api.dicebear.com/9.x/toon-head/svg?flip=true&seed=${seed}`}
       />
       <div className="sidebarChat__info">
-        <h2>Usuario</h2>
-        {messages && <p>{messages[messages.length - 1]?.message}</p>}
+        {/*         {messages && <p>{messages[messages.length - 1]?.message}</p>}
+         */}
         <h2>{person}</h2>
         <p>{lastTimestamp}</p>
       </div>

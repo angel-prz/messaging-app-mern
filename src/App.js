@@ -11,10 +11,18 @@ function App() {
   const [{ user }, dispatch] = useStateValue();
 
   useEffect(() => {
-    axios.get("/messages/sync").then((res) => {
-      setMessages(res.data);
-    });
-  });
+    const timer = setTimeout(() => {
+      axios
+        .get("/messages/sync")
+        .then((res) => {
+          setMessages(res.data);
+        })
+        .catch((err) => console.error(err));
+    }, 1000);
+
+    /* return () => clearTimeout(timer); */
+  }, []);
+
   return (
     <div className="App">
       {!user ? (
