@@ -6,17 +6,18 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [messages, setMessages] = useState([]);
+  const [{ user }, dispatch] = useStateValue();
+
   useEffect(() => {
     axios.get("/messages/sync").then((res) => {
       setMessages(res.data);
     });
-  }, []);
-
+  });
   return (
     <div className="App">
       <div className="app__body">
         <Sidebar />
-        <Chat />
+        <Chat messages={messages} />
       </div>
     </div>
   );

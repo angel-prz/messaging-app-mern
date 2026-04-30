@@ -6,12 +6,26 @@ import SearchIcon from "@mui/icons-material/Search";
 import "./Chat.css";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import MicIcon from "@mui/icons-material/Mic";
+import axios from "../axios";
 
-const Chat = () => {
+const Chat = ({ messages }) => {
   const [seed, setSeed] = useState("");
+  const [input, setInput] = useState("");
+
+  const sendMessage = async (e) => {
+    e.preventDefault();
+    await axios.post("/messages/new", {
+      message: input,
+      name: user,
+      timestamp: new Date().toUTCString(),
+      received: true,
+    });
+    setInput("");
+  };
   useEffect(() => {
     setSeed(Math.floor(Math.random() * 5000));
   }, []);
+
   return (
     <div className="chat">
       <div className="chat__header">
@@ -35,27 +49,28 @@ const Chat = () => {
         </div>
       </div>
       <div className="chat__body">
-        <p className="chat__message">
-          <span className="chat__name">Fulano</span>
-          Bla bla bla
-          <span className="chat__timestamp">{new Date().toUTCString()}</span>
-        </p>
-        <p className="chat__message chat__receiver">
-          <span className="chat__name">Beltrano</span>
-          kkkkkkk
-          <span className="chat__timestamp">{new Date().toUTCString()}</span>
-        </p>
-        <p className="chat__message">
-          <span className="chat__name">Ciclano</span>
-          🤦"#$%&'()*+,-.🤦"#$%&'()*+,-.🤦"#$%&'()*+,-.🤦"#$%&'()*+,-.
-          <span className="chat__timestamp">{new Date().toUTCString()}</span>
-        </p>
+        {messages.map((message) => (
+          <p
+            className={`chat__message ${message.name === user && "chat__receiver"}`}
+          >
+            <span className="chat__name">{message.name}</span>
+            {message.message}
+            <span className="chat__timestamp">{message.timestamp}</span>
+          </p>
+        ))}
       </div>
       <div className="chat__footer">
         <InsertEmoticonIcon />
         <form>
-          <input placeholder="Digite sua mensagem" type="text" />
-          <button type="submit">Enviar</button>
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Digite sua mensagem"
+            type="text"
+          />
+          <button onClick={sendMessage} type="submit">
+            Enviar
+          </button>
         </form>
         <MicIcon />
       </div>
