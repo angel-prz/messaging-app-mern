@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
 import { FormControl, Input, Button, Box } from "@mui/material";
-import { actionTypes } from "./reducer";
-import { useStateValue } from "./StateProvider";
+import { actionTypes } from "../reducer";
+import { useStateValue } from "../StateProvider";
 import "./Login.css";
+
 const Login = () => {
   const [{}, dispatch] = useStateValue();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -12,7 +14,6 @@ const Login = () => {
       type: actionTypes.SET_USER,
       user: data.get("user"),
     });
-    console.log("Nome digitado2: ", data.get("user"));
   };
   return (
     <div className="login">

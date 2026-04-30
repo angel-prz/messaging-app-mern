@@ -3,6 +3,8 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Chat from "./components/Chat/Chat";
 import axios from "./components/axios";
 import { useEffect, useState } from "react";
+import Login from "./components/Login/Login";
+import { useStateValue } from "./components/StateProvider";
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -15,10 +17,14 @@ function App() {
   });
   return (
     <div className="App">
-      <div className="app__body">
-        <Sidebar />
-        <Chat messages={messages} />
-      </div>
+      {!user ? (
+        <Login />
+      ) : (
+        <div className="app__body">
+          <Sidebar messages={messages} />
+          <Chat messages={messages} />
+        </div>
+      )}
     </div>
   );
 }

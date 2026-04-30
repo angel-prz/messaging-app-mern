@@ -7,10 +7,12 @@ import "./Chat.css";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import MicIcon from "@mui/icons-material/Mic";
 import axios from "../axios";
+import { useStateValue } from "../StateProvider";
 
 const Chat = ({ messages }) => {
   const [seed, setSeed] = useState("");
   const [input, setInput] = useState("");
+  const [{ user }, dispatch] = useStateValue();
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -33,8 +35,8 @@ const Chat = ({ messages }) => {
           src={`https://api.dicebear.com/9.x/toon-head/svg?flip=true&seed=${seed}`}
         />
         <div className="chat__headerInfo">
-          <h3>Nome da sala</h3>
-          <p>Last seen at...</p>
+          <h3>Chat básico</h3>
+          <p>Visto em: {messages[messages.length - 1]?.timestamp}</p>
         </div>
         <div className="chat__headerRight">
           <IconButton>
